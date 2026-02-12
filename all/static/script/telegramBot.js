@@ -2,8 +2,8 @@
    THIS FILE HOLDS THE TELEGRAM API FOR CONTACT PAGE, FEEDBACK AREA
    NOTE: YOU SHOULD ENTER YOUR API TOKEN.
 */
-const token = "5229827641:AAGHvQ0Fe4jXvLBKWLS6t3sJf_HCrVoGe1c";
-const chat_id = 5078810320;
+const token = "EnterYourToken";
+const chat_id = "Enter your chat_id as string.";
 const button = document.querySelector("#send");
 button.addEventListener("click", () => {
     let input = document.querySelector("#feedback").value;
