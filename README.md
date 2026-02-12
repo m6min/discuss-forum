@@ -1,7 +1,8 @@
 # 🚀 Discuss | Minimalist Forum with Flask
 
-**Discuss** is a lightweight, responsive, and secure forum application built with **Flask** and **SQLAlchemy**. Designed for simplicity and speed, it features a custom **CSS Grid** layout and a robust administrative backend.
+**Discuss** is a lightweight, responsive, and secure forum application built with **Flask** and **SQLAlchemy**. Designed for simplicity and speed, it features a custom **CSS Grid** layout and a robust administrative backend. It's my first full-stack project.
 
+**See the Live Demo:** [m6min.pythonanywhere.com](http://m6min.pythonanywhere.com)
 ---
 
 ## ✨ Features
