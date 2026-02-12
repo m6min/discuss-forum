@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}Join the discussion {% endblock %}
+{% block content %}
+<form id="message-form" method="POST" action="{{ url_for('add_message', topic_id = topic_id) }}">
+    <p>Thank you for your contribution! By joining a discussion you are accepting 
+        <a href="{{ url_for('rules') }}" target="_blank">'Rules'</a>. This message will be shown at '{{ title }}' discussion.
+        Don't forget to be respectful 
+    to others.</p>
+       <textarea 
+        name="message" 
+        required 
+        placeholder="What's going through your mind?" 
+        spellcheck="false"
+        rows="5"></textarea>
+    <button class="btn" id="add-btn" type="submit">Add your thoughts</button>
+</form>
+{% endblock %}

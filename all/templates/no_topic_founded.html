@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}Error {% endblock %}
+{% block content %}
+<h1 style="font-size: 25px; font-family: sans-serif; color: inherit;">Sorry, we couldn't find a topic for '{{searched_topic}}'. 
+    Redirecting..</h1>
+{% endblock %}
+{% block script %}
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        window.history.back();
+    }, 2000);
+    });
+</script>
+{% endblock %}

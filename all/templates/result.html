@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}{% if input_content %}Successfully Added {% else %}Error Occurred {% endif %}{% endblock %}
+{% block content %}
+{% if input_content %}
+<h2 style="font-size: 25px;">Your message is successfully added to discussion.</h2>
+<a class="redirect" href="{{ url_for('topic', topic_id = topic_id) }}">Go to topic page</a>
+{% else %}
+<h2 style="font-size: 25px;">Message not added: There is an error occurred. Please try again or let us know 
+    <a style="border-bottom: 1px solid #EDE0D4" 
+    href="{{ url_for('contact') }}">
+    from here.</a>
+</h2>
+{% endif %}
+{% endblock %}

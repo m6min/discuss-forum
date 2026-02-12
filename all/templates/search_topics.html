@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}Search Topics {% endblock %}
+{% block content %}
+<form id="search-form" method="GET" action="{{ url_for('search_topics') }}">
+    <div style="position: relative; display: flex; align-items: center;">
+       <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 20px; color: #313647; pointer-events: none;"></i>
+       <input type="search" autocomplete="off" spellcheck="false" placeholder="Search a topic you want to look at.." required 
+       pattern=".*\S+.*" 
+       name="searched_topic" 
+        title="Topic name needs to contain one of them: letters, numbers or punctuation." style="padding-left: 50px; width: 100%;">
+    </div>
+    <button class="btn" id="search-btn" type="submit">Search Topics</button>
+</form>
+{% if query %}
+<h1 style="font-size: 25px; font-family: sans-serif; color: inherit;">Search results for '{{ query }}'</h1>
+{% else %}
+<h1 style="font-size: 25px; font-family: sans-serif; color: inherit;">All Topics</h1>
+{% endif %}
+       {% for t in results %}
+        <div class="topic">
+            <a href="{{ url_for('topic', topic_id=t.id) }}" id="topic-name">{{ t.title }}</a>
+            <h6 id="date">{{ t.date }}</h6>
+        </div>
+        {% endfor %}
+{% endblock %}
+{% block script %}
+<script>
+    // CLEAR THE SEARCH FROM LAST INPUT
+    window.addEventListener('pageshow', function() {
+        let input = document.querySelector('input[name="searched_topic"]');
+        if (input) {
+            input.value = "";
+        }
+    });
+</script>
+{% endblock %}

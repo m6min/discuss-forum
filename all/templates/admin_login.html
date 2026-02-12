@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}Login as Admin {% endblock %}
+{% block content %}
+<form action="{{url_for('admin_login')}}" method="POST">
+    <h1 style="font-size: 20px;">Welcome     {{author_name}}! Enter your password to access admin panel.</h1>
+    <input type="text" placeholder="Enter admin password" required pattern=".*\S+.*" name="password_input" text="Wrong type of password." autocomplete="off" 
+    spellcheck="false">
+    <button class="btn" type="submit" id="go-panel">Login</button>
+{% endblock %}

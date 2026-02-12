@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Discuss | Admin Panel." />
+    <meta name="author" content="m6min" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <style>
+      body {
+        font-family: sans-serif;
+        padding-bottom: 80px;
+      }
+      #logout {
+        z-index: 1000;
+        position: fixed;
+        left: 10px;
+        bottom: 10px;
+        background-color: rgb(148, 42, 42);
+        padding: 15px;
+        font-size: 15px;
+        border-radius: 30px;
+      }
+      h1 {
+        font-size: 20px;
+        border-bottom: 2px solid #EDE0D4;
+        font-weight: 800;
+      }
+      .list {
+        width: 100%;
+        display: grid;
+        border: 1px solid white;
+        grid-template-columns: 2fr 1fr 1fr 0.5fr;
+      }
+      h3 {
+        font-size: 18px;
+        border: 1px solid white;
+        padding: 5px;
+        font-weight: 800;
+      }
+      p {
+        font-size: 15px;
+        border: 1px solid white;
+        padding: 5px;
+        overflow-wrap: break-word;
+      }
+      .remove-button {
+        font-size: 15px;
+        border: 1px solid white;
+        padding: 5px;
+        color: rgb(186, 41, 41);
+      }
+      #logout:hover { 
+        transform: scale(1.05); 
+      }
+      @media (max-width: 768px) {
+        .date-column {
+          display: none;
+        }
+        .list {
+          grid-template-columns: 2fr 1fr 0.5fr;
+        }
+        p {
+          font-size: 12px;
+        }
+        h3 {
+          font-size: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a id="logout" href="{{url_for('logout')}}">Logout From Admin</a>
+      <h1>Manage Topics</h1>
+      <div class="list">
+        <h3>Topic Name</h3>
+        <h3 class="date-column">Date</h3>
+        <h3>IP Address</h3>
+        <h3>Action</h3>
+        {% for t in topics %}
+        <p>{{t.title}}</p><p class="date-column">{{t.date}}</p><p>{{t.ip_address}}</p>
+        <a onclick="return confirm('Are you sure to delete topic: {{t.title | truncate(30)}} ')" 
+        class="remove-button" href="{{url_for('delete_topic', id=t.id)}}">Remove</a>
+        {% endfor %}
+      </div>
+      <br><br>
+      <h1>Manage Messages</h1>
+      <div class="list">
+        <h3>Message [Preview]</h3>
+        <h3 class="date-column">Date</h3>
+        <h3>IP Address</h3>
+        <h3>Action</h3>
+        {% for m in messages %}
+        <p>{{m.content | truncate(50)}}</p><p class="date-column">{{m.date}}</p><p>{{m.ip_address}}</p>
+        <a onclick="return confirm('Are you sure to delete message: {{m.content | truncate(30)}} ')" 
+        class="remove-button" href="{{url_for('delete_message', id=m.id)}}">Remove</a>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

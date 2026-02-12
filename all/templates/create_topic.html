@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Create Topic {% endblock %}
+{% block content %}
+<form id="form" method="POST" action="{{ url_for('create_topic') }}">
+    <p>Thank you for your contribution! By creating topic you are accepting 
+        <a href="{{ url_for('rules') }}" target="_blank">'Creating Topic Rules'</a>.Don't forget to find a 
+        relevant topic name so others can easily join the discussion.</p>
+    <input required title="Please enter a proper title name." spellcheck="false" autocomplete="off" type="text" 
+    placeholder="Enter topic name" id="topic-name" name="topic_title">
+    <textarea required pattern=".*\S+.*" title="Please enter a proper text." spellcheck="false" autocomplete="off" required rows="4" cols="50" 
+    placeholder="Enter your thoughts.." name="topic_content"></textarea>
+    <button type="submit" class="btn" id="submit">Create Discuss</button>
+</form>
+{% endblock %}

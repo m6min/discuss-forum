@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}{{ topic.title }} {% endblock %}
+{% block description %}
+Join the discussion about "{{ topic.title }}". Read thoughts and share yours anonymously on Discuss Open-Source platform.
+{% endblock %}
+{% block content %}
+<div class="create" id="message"><i class="fa-solid fa-plus"></i>
+    <h1>Add your thoughts about this topic.</h1>
+    <a href="{{ url_for('add_message', topic_id = topic.id) }}" 
+       style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+       </a>
+    </div>
+<div class="topic">
+            <p id="topic-name">{{ topic.title }}</p>
+            <p id="topic-content">{{ topic.content }}</p>
+            <h6 id="date">{{ topic.date }}</h6>
+        </div>
+{% if msgs %}
+{% for msg in msgs %}
+<div class="topic">
+            <p id="topic-content">{{ msg.content }}</p>
+            <h6 id="date">{{ msg.date }}</h6>
+        </div>
+{% endfor %}
+{% endif %}
+{% endblock %}

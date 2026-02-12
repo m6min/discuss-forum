@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{% block description %}Discuss topics freely without registration.{% endblock %}">
+    <meta name="author" content="m6min" />
+    <title>{% block title %}{% endblock %}| Discuss</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='imgs/icon.png')}}" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <script src="https://kit.fontawesome.com/2270cb0466.js" crossorigin="anonymous"></script>
+    <script>
+    const isConfirmed = localStorage.getItem("adult_consent");
+    if(isConfirmed === "true"){
+        document.write('<style>#warning { display: none !important; }</style>');
+    }
+    </script>
+  </head>
+  <body>
+    <div class="warning" id="warning">
+    <div class="card">
+      <h1>Legal Notice:</h1>
+      <p>
+        This site may contain content suitable for users 18 years of age and
+        older. By confirming, you acknowledge that you are of legal age.
+      </p>
+      <button type="button" class="btn decline" onclick="decline()">I'm under 18</button>
+      <br>
+      <button type="button" class="btn accept" onclick="accept()">I'm over 18, go ahead</button>
+    </div>
+    </div>
+    <header>
+        <a href="{{ url_for('index')}}">Discuss</a>
+    </header>
+    <div class="container">
+    {% block content %}{% endblock %}
+    </div>
+    <footer>
+      You can contact us via 
+      <a href="{{ url_for('contact')}}">Contact Page</a>. © {{ year }}, by Mümin Filiz.
+    </footer>
+    <script src="{{ url_for('static', filename='script/script.js') }}"></script>
+    {% block script %}{% endblock %}
+  </body>
+</html>
