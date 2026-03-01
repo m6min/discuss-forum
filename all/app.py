@@ -2,12 +2,18 @@ import os
 from datetime import datetime
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for, abort, session
+from flask_limiter import Limiter
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 # load env file
 load_dotenv()
 
 app = Flask(__name__)
+# Added proxy fix for live site
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1)
+# Limit added for spams
+limiter = Limiter(app, default_limits=["10 per minute"])
 app.secret_key = os.getenv('SECRET_KEY', 'default_key')
 # Default ADMIN PASSWORD
 ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD', '1234')
@@ -239,4 +245,4 @@ if __name__ == "__main__":
     # creating tables
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(debug=False)
